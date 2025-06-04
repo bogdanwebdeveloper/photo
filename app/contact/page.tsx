@@ -128,15 +128,15 @@ export default function ContactPage() {
               păstrezi acele momente prețioase pentru totdeauna.
             </p>
 
-            {/* Email Display - Big and Prominent */}
-            <div className="mb-12">
-              <div className="inline-flex items-center justify-center p-6 sm:p-8 bg-accent/10 border border-accent/20 rounded-2xl hover:border-accent/40 transition-all duration-300 hover:scale-105 accent-glow-hover">
-                <Mail className="h-8 w-8 sm:h-12 sm:w-12 text-accent mr-4 sm:mr-6" />
-                <div className="text-left">
+            {/* Email Display - Big and Prominent - Mobile Responsive */}
+            <div className="mb-12 px-4">
+              <div className="flex flex-col sm:flex-row items-center justify-center p-4 sm:p-6 lg:p-8 bg-accent/10 border border-accent/20 rounded-2xl hover:border-accent/40 transition-all duration-300 hover:scale-105 accent-glow-hover max-w-full">
+                <Mail className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 text-accent mb-3 sm:mb-0 sm:mr-4 lg:mr-6 flex-shrink-0" />
+                <div className="text-center sm:text-left min-w-0 flex-1">
                   <p className="text-sm sm:text-base text-muted-foreground mb-1">Scrie-mi direct</p>
                   <a
                     href="mailto:contact@bogdanpics.com"
-                    className="text-2xl sm:text-4xl lg:text-5xl font-bold text-accent hover:text-accent/80 transition-colors duration-300"
+                    className="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-accent hover:text-accent/80 transition-colors duration-300 break-all sm:break-normal"
                   >
                     contact@bogdanpics.com
                   </a>
