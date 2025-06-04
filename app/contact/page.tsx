@@ -289,17 +289,17 @@ export default function ContactPage() {
                     <Button
                       type="submit"
                       disabled={!isFormValid || isSubmitting}
-                      className="w-full py-6 text-lg font-semibold hover:scale-105 transition-all duration-300 disabled:hover:scale-100 photo-gradient accent-glow-hover"
+                      className="w-full py-4 sm:py-6 text-base sm:text-lg font-semibold hover:scale-105 transition-all duration-300 disabled:hover:scale-100 photo-gradient accent-glow-hover"
                     >
                       {isSubmitting ? (
                         <>
-                          <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white mr-3"></div>
-                          Se trimite cererea...
+                          <div className="animate-spin rounded-full h-4 w-4 sm:h-5 sm:w-5 border-t-2 border-b-2 border-white mr-2 sm:mr-3"></div>
+                          <span className="text-sm sm:text-base">Se trimite cererea...</span>
                         </>
                       ) : (
                         <>
-                          <Send className="h-5 w-5 mr-2" />
-                          Solicită oferta foto
+                          <Send className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+                          <span className="text-sm sm:text-base">Solicită oferta foto</span>
                         </>
                       )}
                     </Button>
