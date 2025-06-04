@@ -2,11 +2,11 @@ import mysql from "mysql2/promise"
 
 // Database configuration
 const dbConfig = {
-  host: "db5017977807.hosting-data.io",
-  port: 3306,
-  user: "dbu3130980",
-  password: "photodb123##$$__",
-  database: "photodb",
+  host: "l4wb7.h.filess.io",
+  port: 61000,
+  user: "mariadb_hallpolice",
+  password: "346a601f85361c0866e962acd380631b572599b1",
+  database: "mariadb_hallpolice",
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
