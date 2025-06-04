@@ -159,19 +159,25 @@ export default function PhotoPortfolio() {
             {/* Logo Section */}
             <div className="flex items-center space-x-2 sm:space-x-4 min-w-0 flex-1">
               <Camera className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0" />
-              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent truncate">
+              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent truncate">
                 BogdanPics
               </h1>
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-4">
-              <Button variant="ghost" className="font-medium text-sm hover:scale-105 transition-transform">
+              <Button
+                variant="ghost"
+                className="font-medium text-sm hover:scale-105 transition-transform hover:text-accent"
+              >
                 <User className="h-4 w-4 mr-2" />
                 Despre mine
               </Button>
               <Link href="/contact">
-                <Button variant="ghost" className="font-medium text-sm hover:scale-105 transition-transform">
+                <Button
+                  variant="ghost"
+                  className="font-medium text-sm hover:scale-105 transition-transform hover:text-accent"
+                >
                   <Mail className="h-4 w-4 mr-2" />
                   Contact
                 </Button>
@@ -180,7 +186,7 @@ export default function PhotoPortfolio() {
                 variant="ghost"
                 size="icon"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="hover:scale-110 transition-transform"
+                className="hover:scale-110 transition-transform hover:text-accent"
               >
                 <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                 <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
@@ -191,7 +197,11 @@ export default function PhotoPortfolio() {
             {/* Mobile Navigation */}
             <div className="flex md:hidden items-center space-x-1">
               <Link href="/contact">
-                <Button variant="ghost" size="sm" className="text-xs px-2 hover:scale-105 transition-transform">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-xs px-2 hover:scale-105 transition-transform hover:text-accent"
+                >
                   <Mail className="h-3 w-3 mr-1" />
                   Contact
                 </Button>
@@ -200,7 +210,7 @@ export default function PhotoPortfolio() {
                 variant="ghost"
                 size="icon"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="hover:scale-110 transition-transform h-8 w-8"
+                className="hover:scale-110 transition-transform h-8 w-8 hover:text-accent"
               >
                 <Sun className="h-3 w-3 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                 <Moon className="absolute h-3 w-3 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
@@ -215,8 +225,10 @@ export default function PhotoPortfolio() {
       <section className="py-6 sm:py-8 border-b bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center space-x-3 mb-4 animate-fade-in">
-            <Instagram className="h-6 w-6 sm:h-8 sm:w-8 text-foreground" />
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground">@bogdanfotograful</h2>
+            <Instagram className="h-6 w-6 sm:h-8 sm:w-8 text-accent" />
+            <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-foreground via-accent to-foreground bg-clip-text text-transparent">
+              @bogdanfotograful
+            </h2>
           </div>
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
             Fotograf pasionat din Botoșani, România. Captez momente autentice și emoții reale prin obiectiv. De la
@@ -233,10 +245,12 @@ export default function PhotoPortfolio() {
       </section>
 
       {/* About Me Section */}
-      <section className="py-8 sm:py-12 bg-muted/30">
+      <section className="py-8 sm:py-12 photo-gradient-light">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-foreground">Despre mine - Fotograf Botoșani</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6 bg-gradient-to-r from-foreground via-accent to-primary bg-clip-text text-transparent">
+              Despre mine - Fotograf Botoșani
+            </h2>
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="space-y-4 text-left">
                 <p className="text-muted-foreground leading-relaxed">
@@ -250,18 +264,28 @@ export default function PhotoPortfolio() {
                   colaborări în județele din apropiere. Încerc mereu să ofer servicii de calitate la prețuri accesibile.
                 </p>
                 <div className="flex flex-wrap gap-2 mt-4">
-                  <Badge variant="secondary">Portrete</Badge>
-                  <Badge variant="secondary">Fotografie de stradă</Badge>
-                  <Badge variant="secondary">Peisaje</Badge>
-                  <Badge variant="secondary">Evenimente</Badge>
-                  <Badge variant="secondary">Fotografie auto</Badge>
+                  <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/20">
+                    Portrete
+                  </Badge>
+                  <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/20">
+                    Fotografie de stradă
+                  </Badge>
+                  <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/20">
+                    Peisaje
+                  </Badge>
+                  <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/20">
+                    Evenimente
+                  </Badge>
+                  <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/20">
+                    Fotografie auto
+                  </Badge>
                 </div>
               </div>
               <div className="relative">
                 <img
                   src="/placeholder.svg?height=400&width=400"
                   alt="Bogdan - Fotograf Botoșani"
-                  className="rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  className="rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 accent-glow-hover"
                 />
               </div>
             </div>
@@ -273,7 +297,9 @@ export default function PhotoPortfolio() {
       <section className="py-8 sm:py-12 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-foreground">Servicii Editare Foto Profesională</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6 bg-gradient-to-r from-foreground via-accent to-primary bg-clip-text text-transparent">
+              Servicii Editare Foto Profesională
+            </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto text-base leading-relaxed mb-8">
               Ai fotografii care au nevoie de o mică îmbunătățire? Ofer servicii de editare foto profesională pentru a
               face imaginile tale să strălucească. Nu voi schimba radical aspectul fotografiilor, dar pot face acele
@@ -281,10 +307,10 @@ export default function PhotoPortfolio() {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              <Card className="hover:shadow-lg transition-shadow duration-300">
+              <Card className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 accent-glow-hover border-accent/20">
                 <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="h-8 w-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="h-8 w-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -300,10 +326,10 @@ export default function PhotoPortfolio() {
                 </CardContent>
               </Card>
 
-              <Card className="hover:shadow-lg transition-shadow duration-300">
+              <Card className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 accent-glow-hover border-accent/20">
                 <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="h-8 w-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="h-8 w-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -319,10 +345,10 @@ export default function PhotoPortfolio() {
                 </CardContent>
               </Card>
 
-              <Card className="hover:shadow-lg transition-shadow duration-300">
+              <Card className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 accent-glow-hover border-accent/20">
                 <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="h-8 w-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="h-8 w-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -338,10 +364,10 @@ export default function PhotoPortfolio() {
                 </CardContent>
               </Card>
 
-              <Card className="hover:shadow-lg transition-shadow duration-300">
+              <Card className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 accent-glow-hover border-accent/20">
                 <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="h-8 w-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="h-8 w-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -358,30 +384,30 @@ export default function PhotoPortfolio() {
               </Card>
             </div>
 
-            <div className="bg-muted/50 rounded-lg p-6 mb-6">
+            <div className="bg-accent/5 border border-accent/20 rounded-lg p-6 mb-6">
               <h3 className="text-xl font-semibold mb-4 text-foreground">De ce să alegi serviciile mele de editare?</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
                   <p className="text-muted-foreground">
                     <strong>Stil natural:</strong> Nu exagerez cu editarea - păstrez aspectul autentic al fotografiilor
                   </p>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
                   <p className="text-muted-foreground">
                     <strong>Prețuri accesibile:</strong> Tarife competitive pentru servicii de editare de calitate
                   </p>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
                   <p className="text-muted-foreground">
                     <strong>Livrare rapidă:</strong> Procesez imaginile în 2-5 zile lucrătoare, în funcție de
                     complexitate
                   </p>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
                   <p className="text-muted-foreground">
                     <strong>Revizii incluse:</strong> O rundă de modificări gratuită pentru a te asigura că ești
                     mulțumit
@@ -392,13 +418,20 @@ export default function PhotoPortfolio() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
-                <Button size="lg" className="hover:scale-105 transition-transform">
+                <Button
+                  size="lg"
+                  className="photo-gradient hover:scale-105 transition-all duration-300 accent-glow-hover"
+                >
                   <Mail className="h-4 w-4 mr-2" />
                   Solicită editare foto
                 </Button>
               </Link>
               <Link href="/before-after">
-                <Button variant="outline" size="lg" className="hover:scale-105 transition-transform">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="hover:scale-105 transition-transform border-accent/30 hover:border-accent hover:text-accent"
+                >
                   <Camera className="h-4 w-4 mr-2" />
                   Vezi exemple before/after
                 </Button>
@@ -409,15 +442,17 @@ export default function PhotoPortfolio() {
       </section>
 
       {/* Services Section */}
-      <section className="py-8 sm:py-12 bg-background">
+      <section className="py-8 sm:py-12 photo-gradient-light">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-foreground">Servicii Foto Botoșani</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 bg-gradient-to-r from-foreground via-accent to-primary bg-clip-text text-transparent">
+              Servicii Foto Botoșani
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Card className="hover:shadow-lg transition-shadow duration-300">
+              <Card className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 accent-glow-hover border-accent/20">
                 <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <User className="h-8 w-8 text-primary" />
+                  <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <User className="h-8 w-8 text-accent" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3">Portrete</h3>
                   <p className="text-muted-foreground">
@@ -427,10 +462,10 @@ export default function PhotoPortfolio() {
                 </CardContent>
               </Card>
 
-              <Card className="hover:shadow-lg transition-shadow duration-300">
+              <Card className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 accent-glow-hover border-accent/20">
                 <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Camera className="h-8 w-8 text-primary" />
+                  <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Camera className="h-8 w-8 text-accent" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3">Evenimente</h3>
                   <p className="text-muted-foreground">
@@ -440,10 +475,10 @@ export default function PhotoPortfolio() {
                 </CardContent>
               </Card>
 
-              <Card className="hover:shadow-lg transition-shadow duration-300">
+              <Card className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 accent-glow-hover border-accent/20">
                 <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Mail className="h-8 w-8 text-primary" />
+                  <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Mail className="h-8 w-8 text-accent" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3">Fotografie Creativă</h3>
                   <p className="text-muted-foreground">
@@ -459,17 +494,19 @@ export default function PhotoPortfolio() {
 
       {/* Albums Carousel */}
       {albums.length > 0 && (
-        <section className="py-8 sm:py-12 bg-muted/30">
+        <section className="py-8 sm:py-12 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between mb-6 sm:mb-8">
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">Albumele mele</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-foreground via-accent to-primary bg-clip-text text-transparent">
+                Albumele mele
+              </h2>
               <div className="flex space-x-2">
                 <Button
                   variant="outline"
                   size="icon"
                   onClick={prevAlbum}
                   disabled={albums.length <= 3}
-                  className="hover:scale-110 transition-transform"
+                  className="hover:scale-110 transition-transform border-accent/30 hover:border-accent hover:text-accent"
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </Button>
@@ -478,7 +515,7 @@ export default function PhotoPortfolio() {
                   size="icon"
                   onClick={nextAlbum}
                   disabled={albums.length <= 3}
-                  className="hover:scale-110 transition-transform"
+                  className="hover:scale-110 transition-transform border-accent/30 hover:border-accent hover:text-accent"
                 >
                   <ChevronRight className="h-4 w-4" />
                 </Button>
@@ -489,7 +526,7 @@ export default function PhotoPortfolio() {
               {getVisibleAlbums().map((album) => (
                 <Card
                   key={album.id}
-                  className="group cursor-pointer overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                  className="group cursor-pointer overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 accent-glow-hover border-accent/20"
                 >
                   <CardContent className="p-0">
                     <div className="relative bg-muted">
@@ -514,22 +551,28 @@ export default function PhotoPortfolio() {
       )}
 
       {/* Photo Gallery with Filtering */}
-      <section className="py-8 sm:py-12 bg-background">
+      <section className="py-8 sm:py-12 photo-gradient-light">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-foreground">Lucrările mele recente</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6 bg-gradient-to-r from-foreground via-accent to-primary bg-clip-text text-transparent">
+              Lucrările mele recente
+            </h2>
 
             {/* Category Filter */}
             <div className="flex items-center justify-center mb-8">
-              <div className="flex items-center space-x-2 bg-muted/50 rounded-lg p-1 shadow-sm overflow-x-auto">
-                <Filter className="h-4 w-4 text-muted-foreground ml-2 flex-shrink-0" />
+              <div className="flex items-center space-x-2 bg-accent/5 border border-accent/20 rounded-lg p-1 shadow-sm overflow-x-auto">
+                <Filter className="h-4 w-4 text-accent ml-2 flex-shrink-0" />
                 {availableCategories.map((category) => (
                   <Button
                     key={category}
                     variant={selectedCategory === category ? "default" : "ghost"}
                     size="sm"
                     onClick={() => setSelectedCategory(category)}
-                    className="transition-all duration-200 hover:scale-105 whitespace-nowrap"
+                    className={`transition-all duration-200 hover:scale-105 whitespace-nowrap ${
+                      selectedCategory === category
+                        ? "photo-gradient text-white"
+                        : "hover:text-accent hover:bg-accent/10"
+                    }`}
                   >
                     {CATEGORY_DISPLAY_MAP[category] || category}
                   </Button>
@@ -540,7 +583,7 @@ export default function PhotoPortfolio() {
 
           {loading ? (
             <div className="flex justify-center items-center py-20">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-accent"></div>
             </div>
           ) : (
             <PhotoGallery photos={filteredPhotos} targetRowHeight={250} margin={8} onPhotoClick={openLightbox} />
@@ -549,14 +592,16 @@ export default function PhotoPortfolio() {
       </section>
 
       {/* Why Choose Me Section */}
-      <section className="py-8 sm:py-12 bg-muted/30">
+      <section className="py-8 sm:py-12 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-foreground">Ce mă recomandă</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 bg-gradient-to-r from-foreground via-accent to-primary bg-clip-text text-transparent">
+              Ce mă recomandă
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-4">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                  <Camera className="h-8 w-8 text-primary" />
+                <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto">
+                  <Camera className="h-8 w-8 text-accent" />
                 </div>
                 <h4 className="text-xl font-semibold">Echipament profesional & Experiență</h4>
                 <p className="text-muted-foreground">
@@ -565,8 +610,8 @@ export default function PhotoPortfolio() {
                 </p>
               </div>
               <div className="space-y-4">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                  <User className="h-8 w-8 text-primary" />
+                <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto">
+                  <User className="h-8 w-8 text-accent" />
                 </div>
                 <h4 className="text-xl font-semibold">Abordare prietenoasă & flexibilă</h4>
                 <p className="text-muted-foreground">
@@ -575,8 +620,8 @@ export default function PhotoPortfolio() {
                 </p>
               </div>
               <div className="space-y-4">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                  <ArrowUp className="h-8 w-8 text-primary" />
+                <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto">
+                  <ArrowUp className="h-8 w-8 text-accent" />
                 </div>
                 <h4 className="text-xl font-semibold">Livrare rapidă și organizată</h4>
                 <p className="text-muted-foreground">
@@ -585,8 +630,8 @@ export default function PhotoPortfolio() {
                 </p>
               </div>
               <div className="space-y-4">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                  <Mail className="h-8 w-8 text-primary" />
+                <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto">
+                  <Mail className="h-8 w-8 text-accent" />
                 </div>
                 <h4 className="text-xl font-semibold">Prețuri accesibile</h4>
                 <p className="text-muted-foreground">
@@ -600,23 +645,32 @@ export default function PhotoPortfolio() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-8 sm:py-12 bg-background">
+      <section className="py-8 sm:py-12 photo-gradient-light">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-foreground">Să captăm împreună momentele tale!</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6 bg-gradient-to-r from-foreground via-accent to-primary bg-clip-text text-transparent">
+              Să captăm împreună momentele tale!
+            </h2>
             <p className="text-muted-foreground mb-8">
               Cauți un fotograf în Botoșani? Să colaborăm și să surprindem împreună cele mai frumoase momente!
               Contactează-mă pentru disponibilitate și pachete foto personalizate.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
-                <Button size="lg" className="hover:scale-105 transition-transform">
+                <Button
+                  size="lg"
+                  className="photo-gradient hover:scale-105 transition-all duration-300 accent-glow-hover"
+                >
                   <Mail className="h-4 w-4 mr-2" />
                   Solicită ofertă
                 </Button>
               </Link>
               <a href="https://instagram.com/bogdanfotograful" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" size="lg" className="hover:scale-105 transition-transform">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="hover:scale-105 transition-transform border-accent/30 hover:border-accent hover:text-accent"
+                >
                   <Instagram className="h-4 w-4 mr-2" />
                   Vezi Instagram
                 </Button>
@@ -627,7 +681,7 @@ export default function PhotoPortfolio() {
       </section>
 
       {/* Footer */}
-      <footer className="py-6 sm:py-8 border-t bg-muted/30">
+      <footer className="py-6 sm:py-8 border-t bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-muted-foreground">
           <p className="text-sm sm:text-base mb-2">
             &copy; 2025 BogdanPics - Fotograf Botoșani, România. Toate drepturile rezervate.
@@ -641,7 +695,7 @@ export default function PhotoPortfolio() {
         <Button
           onClick={scrollToTop}
           size="icon"
-          className="fixed bottom-6 right-6 z-30 rounded-full shadow-lg hover:scale-110 transition-all duration-300 animate-fade-in"
+          className="fixed bottom-6 right-6 z-30 rounded-full shadow-lg hover:scale-110 transition-all duration-300 animate-fade-in photo-gradient accent-glow"
         >
           <ArrowUp className="h-4 w-4" />
         </Button>
@@ -948,7 +1002,7 @@ const LazyPhoto = ({ photo, onPhotoClick, observer, isVisible }) => {
       }}
       onClick={() => onPhotoClick?.(photo.index)}
     >
-      <Card className="w-full h-full overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-muted">
+      <Card className="w-full h-full overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-muted accent-glow-hover border-accent/20">
         <CardContent className="p-0 w-full h-full flex items-center justify-center relative">
           {isVisible ? (
             <>
@@ -960,14 +1014,14 @@ const LazyPhoto = ({ photo, onPhotoClick, observer, isVisible }) => {
               />
               {/* Category Badge */}
               {photo.category && (
-                <Badge className="absolute top-2 left-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <Badge className="absolute top-2 left-2 opacity-0 group-hover:opacity-100 transition-opacity bg-accent/90 text-white border-accent">
                   {CATEGORY_DISPLAY_MAP[photo.category] || photo.category}
                 </Badge>
               )}
             </>
           ) : (
             <div className="w-full h-full bg-muted animate-pulse flex items-center justify-center">
-              <Camera className="h-8 w-8 text-muted-foreground" />
+              <Camera className="h-8 w-8 text-accent" />
             </div>
           )}
         </CardContent>

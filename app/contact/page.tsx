@@ -87,14 +87,14 @@ export default function ContactPage() {
               <Button
                 variant="ghost"
                 onClick={() => router.back()}
-                className="hover:scale-105 transition-transform p-1 sm:p-2"
+                className="hover:scale-105 transition-transform p-1 sm:p-2 hover:text-accent"
                 size="sm"
               >
                 <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                 <span className="text-xs sm:text-sm">Înapoi</span>
               </Button>
               <Camera className="h-4 w-4 sm:h-6 sm:w-6 text-primary flex-shrink-0" />
-              <h1 className="text-base sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent truncate">
+              <h1 className="text-base sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent truncate">
                 BogdanPics
               </h1>
             </div>
@@ -105,7 +105,7 @@ export default function ContactPage() {
                 variant="ghost"
                 size="icon"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="hover:scale-110 transition-transform h-8 w-8 sm:h-10 sm:w-10"
+                className="hover:scale-110 transition-transform h-8 w-8 sm:h-10 sm:w-10 hover:text-accent"
               >
                 <Sun className="h-3 w-3 sm:h-4 sm:w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                 <Moon className="absolute h-3 w-3 sm:h-4 sm:w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
@@ -117,10 +117,10 @@ export default function ContactPage() {
       </nav>
 
       {/* Hero Section with Email */}
-      <section className="py-12 sm:py-20 bg-gradient-to-br from-background via-muted/30 to-background">
+      <section className="py-12 sm:py-20 photo-gradient-light">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-4xl mx-auto animate-fade-in">
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-8 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-8 bg-gradient-to-r from-foreground via-accent to-primary bg-clip-text text-transparent">
               Să captăm povestea ta
             </h1>
             <p className="text-lg sm:text-xl text-muted-foreground mb-12 leading-relaxed max-w-2xl mx-auto">
@@ -130,13 +130,13 @@ export default function ContactPage() {
 
             {/* Email Display - Big and Prominent */}
             <div className="mb-12">
-              <div className="inline-flex items-center justify-center p-6 sm:p-8 bg-primary/10 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all duration-300 hover:scale-105">
-                <Mail className="h-8 w-8 sm:h-12 sm:w-12 text-primary mr-4 sm:mr-6" />
+              <div className="inline-flex items-center justify-center p-6 sm:p-8 bg-accent/10 border border-accent/20 rounded-2xl hover:border-accent/40 transition-all duration-300 hover:scale-105 accent-glow-hover">
+                <Mail className="h-8 w-8 sm:h-12 sm:w-12 text-accent mr-4 sm:mr-6" />
                 <div className="text-left">
                   <p className="text-sm sm:text-base text-muted-foreground mb-1">Scrie-mi direct</p>
                   <a
                     href="mailto:contact@bogdanpics.com"
-                    className="text-2xl sm:text-4xl lg:text-5xl font-bold text-primary hover:text-primary/80 transition-colors duration-300"
+                    className="text-2xl sm:text-4xl lg:text-5xl font-bold text-accent hover:text-accent/80 transition-colors duration-300"
                   >
                     contact@bogdanpics.com
                   </a>
@@ -146,22 +146,22 @@ export default function ContactPage() {
 
             {/* Quick Contact Info */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
-              <div className="flex items-center justify-center space-x-3 p-4 rounded-lg bg-muted/50">
-                <Phone className="h-5 w-5 text-primary" />
+              <div className="flex items-center justify-center space-x-3 p-4 rounded-lg bg-accent/5 border border-accent/20">
+                <Phone className="h-5 w-5 text-accent" />
                 <div className="text-left">
                   <p className="text-sm text-muted-foreground">Telefon</p>
                   <p className="font-semibold">La cerere</p>
                 </div>
               </div>
-              <div className="flex items-center justify-center space-x-3 p-4 rounded-lg bg-muted/50">
-                <MapPin className="h-5 w-5 text-primary" />
+              <div className="flex items-center justify-center space-x-3 p-4 rounded-lg bg-accent/5 border border-accent/20">
+                <MapPin className="h-5 w-5 text-accent" />
                 <div className="text-left">
                   <p className="text-sm text-muted-foreground">Locație</p>
                   <p className="font-semibold">Botoșani, România</p>
                 </div>
               </div>
-              <div className="flex items-center justify-center space-x-3 p-4 rounded-lg bg-muted/50">
-                <Camera className="h-5 w-5 text-primary" />
+              <div className="flex items-center justify-center space-x-3 p-4 rounded-lg bg-accent/5 border border-accent/20">
+                <Camera className="h-5 w-5 text-accent" />
                 <div className="text-left">
                   <p className="text-sm text-muted-foreground">Timp răspuns</p>
                   <p className="font-semibold">În 24 de ore</p>
@@ -173,17 +173,19 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-12 sm:py-20 bg-muted/30">
+      <section className="py-12 sm:py-20 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-foreground">Solicită oferta ta foto</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-foreground via-accent to-primary bg-clip-text text-transparent">
+                Solicită oferta ta foto
+              </h2>
               <p className="text-muted-foreground text-lg">
                 Spune-mi despre proiectul tău și îți voi oferi un pachet foto personalizat și prețuri.
               </p>
             </div>
 
-            <Card className="shadow-xl border-0 bg-background/80 backdrop-blur-sm">
+            <Card className="shadow-xl border-accent/20 bg-background/80 backdrop-blur-sm accent-glow-hover">
               <CardHeader className="text-center pb-6">
                 <CardTitle className="text-2xl font-semibold">Cerere colaborare foto</CardTitle>
               </CardHeader>
@@ -205,7 +207,11 @@ export default function ContactPage() {
                     <p className="text-sm text-muted-foreground mb-6">
                       Vei primi în scurt timp un email de confirmare la adresa furnizată.
                     </p>
-                    <Button onClick={() => setIsSubmitted(false)} variant="outline">
+                    <Button
+                      onClick={() => setIsSubmitted(false)}
+                      variant="outline"
+                      className="border-accent/30 hover:border-accent hover:text-accent"
+                    >
                       Trimite altă cerere
                     </Button>
                   </div>
@@ -225,7 +231,7 @@ export default function ContactPage() {
                           value={formData.name}
                           onChange={handleInputChange}
                           required
-                          className="transition-all duration-200 focus:scale-[1.02]"
+                          className="transition-all duration-200 focus:scale-[1.02] border-accent/20 focus:border-accent"
                         />
                       </div>
                       <div className="space-y-2">
@@ -240,7 +246,7 @@ export default function ContactPage() {
                           value={formData.email}
                           onChange={handleInputChange}
                           required
-                          className="transition-all duration-200 focus:scale-[1.02]"
+                          className="transition-all duration-200 focus:scale-[1.02] border-accent/20 focus:border-accent"
                         />
                       </div>
                     </div>
@@ -258,7 +264,7 @@ export default function ContactPage() {
                         value={formData.subject}
                         onChange={handleInputChange}
                         required
-                        className="transition-all duration-200 focus:scale-[1.02]"
+                        className="transition-all duration-200 focus:scale-[1.02] border-accent/20 focus:border-accent"
                       />
                     </div>
 
@@ -275,7 +281,7 @@ export default function ContactPage() {
                         onChange={handleInputChange}
                         required
                         rows={6}
-                        className="transition-all duration-200 focus:scale-[1.02] resize-none"
+                        className="transition-all duration-200 focus:scale-[1.02] resize-none border-accent/20 focus:border-accent"
                       />
                     </div>
 
@@ -283,7 +289,7 @@ export default function ContactPage() {
                     <Button
                       type="submit"
                       disabled={!isFormValid || isSubmitting}
-                      className="w-full py-6 text-lg font-semibold hover:scale-105 transition-all duration-300 disabled:hover:scale-100"
+                      className="w-full py-6 text-lg font-semibold hover:scale-105 transition-all duration-300 disabled:hover:scale-100 photo-gradient accent-glow-hover"
                     >
                       {isSubmitting ? (
                         <>
@@ -310,14 +316,16 @@ export default function ContactPage() {
       </section>
 
       {/* Additional Info Section */}
-      <section className="py-12 sm:py-16 bg-background">
+      <section className="py-12 sm:py-16 photo-gradient-light">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-foreground">La ce să te aștepți</h3>
+            <h3 className="text-2xl sm:text-3xl font-bold mb-8 bg-gradient-to-r from-foreground via-accent to-primary bg-clip-text text-transparent">
+              La ce să te aștepți
+            </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="space-y-4">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                  <Mail className="h-8 w-8 text-primary" />
+                <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto">
+                  <Mail className="h-8 w-8 text-accent" />
                 </div>
                 <h4 className="text-xl font-semibold">Răspuns rapid</h4>
                 <p className="text-muted-foreground">
@@ -325,8 +333,8 @@ export default function ContactPage() {
                 </p>
               </div>
               <div className="space-y-4">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                  <Camera className="h-8 w-8 text-primary" />
+                <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto">
+                  <Camera className="h-8 w-8 text-accent" />
                 </div>
                 <h4 className="text-xl font-semibold">Pachet personalizat</h4>
                 <p className="text-muted-foreground">
@@ -335,8 +343,8 @@ export default function ContactPage() {
                 </p>
               </div>
               <div className="space-y-4">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                  <CheckCircle className="h-8 w-8 text-primary" />
+                <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto">
+                  <CheckCircle className="h-8 w-8 text-accent" />
                 </div>
                 <h4 className="text-xl font-semibold">Serviciu profesional</h4>
                 <p className="text-muted-foreground">
@@ -350,7 +358,7 @@ export default function ContactPage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-6 sm:py-8 border-t bg-muted/30">
+      <footer className="py-6 sm:py-8 border-t bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-muted-foreground">
           <p className="text-sm sm:text-base mb-2">
             &copy; 2025 BogdanPics - Fotograf Botoșani, România. Toate drepturile rezervate.
