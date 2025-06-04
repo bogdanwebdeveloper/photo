@@ -152,26 +152,26 @@ export default function PhotoPortfolio() {
 
   return (
     <div className="min-h-screen bg-background cursor-camera-light dark:cursor-camera-dark">
-      {/* Sticky Navigation */}
+      {/* Sticky Navigation - Mobile Optimized */}
       <nav className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-300">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="container mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <Camera className="h-6 w-6 text-primary" />
-              <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+            {/* Logo Section */}
+            <div className="flex items-center space-x-2 sm:space-x-4 min-w-0 flex-1">
+              <Camera className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0" />
+              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent truncate">
                 BogdanPics
               </h1>
             </div>
-            <div className="flex items-center space-x-2 sm:space-x-4">
-              <Button variant="ghost" className="font-medium text-sm sm:text-base hover:scale-105 transition-transform">
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-4">
+              <Button variant="ghost" className="font-medium text-sm hover:scale-105 transition-transform">
                 <User className="h-4 w-4 mr-2" />
                 Despre mine
               </Button>
               <Link href="/contact">
-                <Button
-                  variant="ghost"
-                  className="font-medium text-sm sm:text-base hover:scale-105 transition-transform"
-                >
+                <Button variant="ghost" className="font-medium text-sm hover:scale-105 transition-transform">
                   <Mail className="h-4 w-4 mr-2" />
                   Contact
                 </Button>
@@ -182,8 +182,28 @@ export default function PhotoPortfolio() {
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 className="hover:scale-110 transition-transform"
               >
-                <Sun className="h-4 w-4 sm:h-5 sm:w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <Moon className="absolute h-4 w-4 sm:h-5 sm:w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                <span className="sr-only">Schimbă tema</span>
+              </Button>
+            </div>
+
+            {/* Mobile Navigation */}
+            <div className="flex md:hidden items-center space-x-1">
+              <Link href="/contact">
+                <Button variant="ghost" size="sm" className="text-xs px-2 hover:scale-105 transition-transform">
+                  <Mail className="h-3 w-3 mr-1" />
+                  Contact
+                </Button>
+              </Link>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="hover:scale-110 transition-transform h-8 w-8"
+              >
+                <Sun className="h-3 w-3 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                <Moon className="absolute h-3 w-3 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                 <span className="sr-only">Schimbă tema</span>
               </Button>
             </div>

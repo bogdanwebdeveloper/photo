@@ -216,22 +216,37 @@ export const sendDiscordNotification = async ({
   message: string
 }) => {
   try {
-    // Format the message for Discord
-    const webhookUrl =
-      process.env.DISCORD_WEBHOOK_URL ||
-      "https://discord.com/api/webhooks/1379912930681688064/cSG9RBtA9A4VLTclBqPyFdVZ0T1wfhCKy6hOd_Fbu7P01_3gIjQf03jDuET481ZtQnH7"
+    // Use the environment variable first, then fallback
+    const webhookUrl = process.env.DISCORD_WEBHOOK_URL
 
-    // Truncate message if it's too long for Discord
-    const truncatedMessage = message.length > 1000 ? `${message.substring(0, 997)}...` : message
+    if (!webhookUrl) {
+      console.error("❌ Discord webhook URL not configured")
+      return {
+        success: false,
+        error: "Discord webhook URL not configured",
+      }
+    }
+
+    console.log("🔗 Using Discord webhook:", webhookUrl.substring(0, 50) + "...")
+
+    // Truncate message if it's too long for Discord (2000 char limit)
+    const truncatedMessage = message.length > 1800 ? `${message.substring(0, 1797)}...` : message
 
     // Create a rich embed for Discord
     const payload = {
+      username: "BogdanPics Contact Form",
+      avatar_url: "https://cdn.discordapp.com/emojis/📸.png",
       embeds: [
         {
           title: "📸 New Photography Inquiry",
           description: `You've received a new contact form submission from **${name}**`,
           color: 0x764ba2, // Purple color matching your gradient
           fields: [
+            {
+              name: "👤 Name",
+              value: name,
+              inline: true,
+            },
             {
               name: "📧 Email",
               value: email,
@@ -254,48 +269,54 @@ export const sendDiscordNotification = async ({
             {
               name: "💬 Message",
               value: truncatedMessage,
+              inline: false,
             },
           ],
           footer: {
-            text: "PhotoFolio Contact Form",
+            text: "PhotoFolio Contact Form • BogdanPics",
+            icon_url: "https://cdn.discordapp.com/emojis/📷.png",
           },
           timestamp: new Date().toISOString(),
-        },
-      ],
-      // Add components for quick actions
-      components: [
-        {
-          type: 1,
-          components: [
-            {
-              type: 2,
-              style: 5, // Link button
-              label: "Reply via Email",
-              url: `mailto:${email}?subject=Re: ${encodeURIComponent(subject)}`,
-            },
-          ],
+          thumbnail: {
+            url: "https://cdn.discordapp.com/emojis/📸.png",
+          },
         },
       ],
     }
+
+    console.log("📤 Sending Discord payload:", JSON.stringify(payload, null, 2))
 
     // Send the webhook
     const response = await fetch(webhookUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "User-Agent": "BogdanPics-ContactForm/1.0",
       },
       body: JSON.stringify(payload),
     })
 
+    console.log("📨 Discord response status:", response.status)
+    console.log("📨 Discord response headers:", Object.fromEntries(response.headers.entries()))
+
     if (!response.ok) {
-      throw new Error(`Discord webhook failed with status ${response.status}`)
+      const errorText = await response.text()
+      console.error("❌ Discord webhook failed:", {
+        status: response.status,
+        statusText: response.statusText,
+        body: errorText,
+      })
+
+      throw new Error(`Discord webhook failed with status ${response.status}: ${errorText}`)
     }
+
+    const responseData = await response.text()
+    console.log("✅ Discord webhook response:", responseData)
 
     console.log("✅ Discord notification sent successfully")
     return { success: true }
   } catch (error) {
     console.error("❌ Error sending Discord notification:", error)
-    // Don't throw error for Discord notification failure, just log it
     return {
       success: false,
       error: error.message,

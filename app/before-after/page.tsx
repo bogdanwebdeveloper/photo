@@ -12,29 +12,37 @@ export default function BeforeAfterPage() {
 
   return (
     <div className="min-h-screen bg-background cursor-camera-light dark:cursor-camera-dark">
-      {/* Navigation */}
+      {/* Navigation - Mobile Optimized */}
       <nav className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-300">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="container mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <Button variant="ghost" onClick={() => router.back()} className="hover:scale-105 transition-transform">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Înapoi
+            {/* Back Button & Logo */}
+            <div className="flex items-center space-x-2 sm:space-x-4 min-w-0 flex-1">
+              <Button
+                variant="ghost"
+                onClick={() => router.back()}
+                className="hover:scale-105 transition-transform p-1 sm:p-2"
+                size="sm"
+              >
+                <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                <span className="text-xs sm:text-sm">Înapoi</span>
               </Button>
-              <Camera className="h-6 w-6 text-primary" />
-              <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+              <Camera className="h-4 w-4 sm:h-6 sm:w-6 text-primary flex-shrink-0" />
+              <h1 className="text-base sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent truncate">
                 BogdanPics
               </h1>
             </div>
-            <div className="flex items-center space-x-2 sm:space-x-4">
+
+            {/* Theme Toggle */}
+            <div className="flex items-center">
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="hover:scale-110 transition-transform"
+                className="hover:scale-110 transition-transform h-8 w-8 sm:h-10 sm:w-10"
               >
-                <Sun className="h-4 w-4 sm:h-5 sm:w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <Moon className="absolute h-4 w-4 sm:h-5 sm:w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                <Sun className="h-3 w-3 sm:h-4 sm:w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                <Moon className="absolute h-3 w-3 sm:h-4 sm:w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                 <span className="sr-only">Schimbă tema</span>
               </Button>
             </div>
