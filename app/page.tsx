@@ -37,9 +37,18 @@ export default function PhotoPortfolio() {
       try {
         const photosResponse = await fetch("/api/cdn-photos")
         const photosData = await photosResponse.json()
-        setPhotos(photosData.photos || [])
-        // Optionally, extract categories from photosData.photos
-        const categories = Array.from(new Set((photosData.photos || []).map((p: any) => p.category)))
+        const rawPhotos = photosData.photos || []
+
+        // Fetch dimensions for each photo
+        const photosWithSize = await Promise.all(
+          rawPhotos.map(async (p: any) => {
+            const { width, height } = await getImageSize(p.src)
+            return { ...p, width, height, id: p.src, alt: p.category }
+          })
+        )
+
+        setPhotos(photosWithSize)
+        const categories = Array.from(new Set(photosWithSize.map((p: any) => p.category)))
         setAvailableCategories(["All", ...categories])
         setAlbums(categories)
       } catch (error) {
@@ -1018,4 +1027,13 @@ const LazyPhoto = ({ photo, onPhotoClick, observer, isVisible }) => {
       </Card>
     </div>
   )
+}
+
+function getImageSize(src: string): Promise<{ width: number; height: number }> {
+  return new Promise((resolve) => {
+    const img = new window.Image();
+    img.onload = () => resolve({ width: img.naturalWidth, height: img.naturalHeight });
+    img.onerror = () => resolve({ width: 1200, height: 800 }); // fallback
+    img.src = src;
+  });
 }
