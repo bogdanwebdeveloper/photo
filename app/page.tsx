@@ -36,17 +36,13 @@ export default function PhotoPortfolio() {
     const loadData = async () => {
       setLoading(true)
       try {
-        const photosResponse = await fetch("/api/cdn-photos")
-        const photosData = await photosResponse.json()
-        const rawPhotos = photosData.photos || []
-
-        // Fetch dimensions for each photo
-        const photosWithSize = await Promise.all(
-          rawPhotos.map(async (p: any) => {
-            const { width, height } = await getImageSize(p.src)
-            return { ...p, width, height, id: p.src, alt: p.category }
-          })
-        )
+        const photosResponse = await fetch("https://cdn.bogdanpics.com/public/photos/photos.json")
+        const rawPhotos = await photosResponse.json()
+        const photosWithSize = rawPhotos.map((p: any) => ({
+          ...p,
+          id: p.src,
+          alt: p.category,
+        }))
 
         setPhotos(photosWithSize)
         const categories = Array.from(new Set(photosWithSize.map((p: any) => p.category)))

@@ -1,30 +1,12 @@
 import { NextResponse } from "next/server"
-
-const CDN_BASE = "https://cdn.bogdanpics.com"
-const PHOTOS_API = `${CDN_BASE}/list-files.php?path=/photos/`
+import path from "path"
+import { promises as fs } from "fs"
 
 export async function GET() {
   try {
-    // Doar pozele pentru gridul principal (din /photos)
-    const categoriesRes = await fetch(`${CDN_BASE}/list-directories.php?path=/photos`)
-    const categoriesData = await categoriesRes.json()
-    const categories: string[] = categoriesData.directories || []
-
-    const photos: { src: string; category: string }[] = []
-    for (const category of categories) {
-      const filesRes = await fetch(PHOTOS_API + encodeURIComponent(category))
-      const filesData = await filesRes.json()
-      const files: string[] = filesData.files || []
-      files
-        .filter((file) => file.toLowerCase().endsWith(".webp"))
-        .forEach((file) => {
-          photos.push({
-            src: `${CDN_BASE}/photos/${encodeURIComponent(category)}/${encodeURIComponent(file)}`,
-            category,
-          })
-        })
-    }
-
+    const jsonPath = path.join(process.cwd(), "app", "api", "cdn-photos", "photos.json")
+    const data = await fs.readFile(jsonPath, "utf-8")
+    const photos = JSON.parse(data)
     return NextResponse.json({ photos })
   } catch (error) {
     return NextResponse.json({ error: "Failed to fetch CDN images" }, { status: 500 })
