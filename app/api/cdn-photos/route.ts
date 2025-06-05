@@ -15,12 +15,14 @@ export async function GET() {
       const filesRes = await fetch(PHOTOS_API + encodeURIComponent(category))
       const filesData = await filesRes.json()
       const files: string[] = filesData.files || []
-      files.forEach((file) => {
-        photos.push({
-          src: `${CDN_BASE}/photos/${encodeURIComponent(category)}/${encodeURIComponent(file)}`,
-          category,
+      files
+        .filter((file) => file.toLowerCase().endsWith(".webp"))
+        .forEach((file) => {
+          photos.push({
+            src: `${CDN_BASE}/photos/${encodeURIComponent(category)}/${encodeURIComponent(file)}`,
+            category,
+          })
         })
-      })
     }
 
     return NextResponse.json({ photos })
