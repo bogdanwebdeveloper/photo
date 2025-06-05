@@ -232,11 +232,10 @@ export default function PhotoPortfolio() {
             Fotograf pasionat din Botoșani, România. Captez momente autentice și emoții reale prin obiectiv. De la
             portrete și peisaje până la evenimente speciale - fiecare fotografie spune o poveste unică.
           </p>
-          <div className="flex items-center justify-center space-x-4 sm:space-x-6 mt-4 text-xs sm:text-sm text-muted-foreground">
-            <span>•</span>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 mt-4 text-xs sm:text-sm text-muted-foreground">
             <span>~50 urmăritori</span>
-            <span>•</span>
-            <span className="hidden sm:inline">Disponibil pentru colaborări</span>
+            <span className="hidden sm:inline">•</span>
+            <span>Disponibil pentru colaborări</span>
           </div>
         </div>
       </section>
