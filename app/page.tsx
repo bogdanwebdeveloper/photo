@@ -1026,9 +1026,12 @@ const LazyPhoto = ({ photo, onPhotoClick, observer, isVisible }) => {
           {isVisible ? (
             <>
               <picture>
-                <source srcSet={photo.src.replace(/\.(jpg|jpeg|png)$/i, ".webp")} type="image/webp" />
+                <source
+                  srcSet={`https://cdn.bogdanpics.com${photo.src.replace(/\.(jpg|jpeg|png)$/i, ".webp")}`}
+                  type="image/webp"
+                />
                 <img
-                  src={photo.src}
+                  src={`https://cdn.bogdanpics.com${photo.src}`}
                   alt={photo.alt}
                   className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-500"
                   loading="lazy"
