@@ -10,7 +10,7 @@ import Link from "next/link"
 
 // Category display mapping (English internal -> Romanian display)
 const CATEGORY_DISPLAY_MAP = {
-  All: "Toate",
+  TopPicks: "Top Picks",
   Nature: "Natură",
   Portraits: "Portrete",
   Street: "Stradă",
@@ -49,7 +49,9 @@ export default function PhotoPortfolio() {
         )
 
         setPhotos(photosWithSize)
-        setAvailableCategories(["All", ...Array.from(new Set(photosWithSize.map((p: any) => p.category)))])
+        const categories = Array.from(new Set(photosWithSize.map((p: any) => p.category)))
+        setAvailableCategories(["TopPicks", ...categories.filter(c => c !== "TopPicks")])
+        setSelectedCategory("TopPicks")
       } catch (error) {
         setPhotos([])
       } finally {
@@ -146,7 +148,9 @@ export default function PhotoPortfolio() {
   }
 
   const filteredPhotos =
-    selectedCategory === "All" ? photos : photos.filter((photo) => photo.category === selectedCategory)
+    selectedCategory === "TopPicks"
+      ? photos.filter((photo) => photo.category === "top-picks" || photo.category === "TopPicks")
+      : photos.filter((photo) => photo.category === selectedCategory)
 
   return (
     <div className="min-h-screen bg-background cursor-camera-light dark:cursor-camera-dark">
