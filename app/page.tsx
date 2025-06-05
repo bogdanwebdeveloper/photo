@@ -35,29 +35,19 @@ export default function PhotoPortfolio() {
     const loadData = async () => {
       setLoading(true)
       try {
-        const [photosResponse, albumsResponse, categoriesResponse] = await Promise.all([
-          fetch("/api/photos"),
-          fetch("/api/albums"),
-          fetch("/api/categories"),
-        ])
-
+        const photosResponse = await fetch("/api/cdn-photos")
         const photosData = await photosResponse.json()
-        const albumsData = await albumsResponse.json()
-        const categoriesData = await categoriesResponse.json()
-
         setPhotos(photosData.photos || [])
-        setAlbums(albumsData.albums || [])
-        setAvailableCategories(categoriesData.categories || ["All"])
+        // Optionally, extract categories from photosData.photos
+        const categories = Array.from(new Set((photosData.photos || []).map((p: any) => p.category)))
+        setAvailableCategories(["All", ...categories])
+        setAlbums(categories)
       } catch (error) {
-        console.error("Error loading data:", error)
         setPhotos([])
-        setAlbums([])
-        setAvailableCategories(["All"])
       } finally {
         setLoading(false)
       }
     }
-
     loadData()
   }, [])
 
