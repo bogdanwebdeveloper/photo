@@ -1029,12 +1029,15 @@ const LazyPhoto = ({ photo, onPhotoClick, observer, isVisible }) => {
         <CardContent className="p-0 w-full h-full flex items-center justify-center relative">
           {isVisible ? (
             <>
-              <img
-                src={photo.src || "/placeholder.svg"}
-                alt={photo.alt}
-                className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-500"
-                loading="lazy"
-              />
+              <picture>
+                <source srcSet={photo.src.replace(/\.(jpg|jpeg|png)$/i, ".webp")} type="image/webp" />
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </picture>
               {/* Category Badge */}
               {photo.category && (
                 <Badge className="absolute top-2 left-2 opacity-0 group-hover:opacity-100 transition-opacity bg-accent/90 text-white border-accent">
