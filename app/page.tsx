@@ -49,24 +49,7 @@ export default function PhotoPortfolio() {
         )
 
         setPhotos(photosWithSize)
-
-        // Construiește albumele ca obiecte cu copertă și număr de poze
-        const albumMap = new Map();
-        photosWithSize.forEach((photo: any) => {
-          if (!albumMap.has(photo.category)) {
-            albumMap.set(photo.category, {
-              id: photo.category,
-              title: CATEGORY_DISPLAY_MAP[photo.category] || photo.category,
-              coverImage: photo.src,
-              photoCount: 1,
-            });
-          } else {
-            albumMap.get(photo.category).photoCount += 1;
-          }
-        });
-        const albumList = Array.from(albumMap.values());
-        setAlbums(albumList);
-        setAvailableCategories(["All", ...albumList.map((a) => a.id)]);
+        setAvailableCategories(["All", ...Array.from(new Set(photosWithSize.map((p: any) => p.category)))])
       } catch (error) {
         setPhotos([])
       } finally {

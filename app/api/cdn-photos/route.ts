@@ -5,7 +5,7 @@ const PHOTOS_API = `${CDN_BASE}/list-files.php?path=/photos/`
 
 export async function GET() {
   try {
-    // Pozele pentru gridul principal și albume (din /photos)
+    // Doar pozele pentru gridul principal (din /photos)
     const categoriesRes = await fetch(`${CDN_BASE}/list-directories.php?path=/photos`)
     const categoriesData = await categoriesRes.json()
     const categories: string[] = categoriesData.directories || []
