@@ -951,8 +951,8 @@ const PhotoGallery = ({ photos, targetRowHeight = 200, margin = 4, onPhotoClick 
     let currentTop = 0
 
     rows.forEach((row) => {
-      const total
       const totalAspectRatio = row.reduce((sum, photo) => sum + photo.width / photo.height, 0)
+      const availableWidth = containerWidth - margin * (row.length - 1)
       const rowHeight = availableWidth / totalAspectRatio
 
       let currentLeft = 0
