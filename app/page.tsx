@@ -30,6 +30,7 @@ export default function PhotoPortfolio() {
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [isFullscreen, setIsFullscreen] = useState(false)
+  const [selectedAlbum, setSelectedAlbum] = useState<string | null>(null);
 
   useEffect(() => {
     const loadData = async () => {
@@ -48,9 +49,24 @@ export default function PhotoPortfolio() {
         )
 
         setPhotos(photosWithSize)
-        const categories = Array.from(new Set(photosWithSize.map((p: any) => p.category)))
-        setAvailableCategories(["All", ...categories])
-        setAlbums(categories)
+
+        // Construiește albumele ca obiecte cu copertă și număr de poze
+        const albumMap = new Map();
+        photosWithSize.forEach((photo: any) => {
+          if (!albumMap.has(photo.category)) {
+            albumMap.set(photo.category, {
+              id: photo.category,
+              title: CATEGORY_DISPLAY_MAP[photo.category] || photo.category,
+              coverImage: photo.src,
+              photoCount: 1,
+            });
+          } else {
+            albumMap.get(photo.category).photoCount += 1;
+          }
+        });
+        const albumList = Array.from(albumMap.values());
+        setAlbums(albumList);
+        setAvailableCategories(["All", ...albumList.map((a) => a.id)]);
       } catch (error) {
         setPhotos([])
       } finally {
@@ -526,6 +542,7 @@ export default function PhotoPortfolio() {
                 <Card
                   key={album.id}
                   className="group cursor-pointer overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 accent-glow-hover border-accent/20"
+                  onClick={() => setSelectedAlbum(album.id)}
                 >
                   <CardContent className="p-0">
                     <div className="relative bg-muted">
@@ -547,6 +564,28 @@ export default function PhotoPortfolio() {
             </div>
           </div>
         </section>
+      )}
+
+      {/* MODIFICARE: Album grid modal */}
+      {selectedAlbum && (
+        <div className="fixed inset-0 z-50 bg-black/90 flex flex-col items-center justify-center p-4">
+          <Button
+            onClick={() => setSelectedAlbum(null)}
+            className="absolute top-6 right-6 z-10"
+            variant="secondary"
+          >
+            <X className="mr-2" /> Închide albumul
+          </Button>
+          <h2 className="text-2xl font-bold text-white mb-6">
+            {albums.find(a => a.id === selectedAlbum)?.title}
+          </h2>
+          <PhotoGallery
+            photos={photos.filter(p => p.category === selectedAlbum)}
+            targetRowHeight={250}
+            margin={8}
+            onPhotoClick={openLightbox}
+          />
+        </div>
       )}
 
       {/* Photo Gallery with Filtering */}
@@ -912,8 +951,7 @@ const PhotoGallery = ({ photos, targetRowHeight = 200, margin = 4, onPhotoClick 
     let currentTop = 0
 
     rows.forEach((row) => {
-      const totalMargins = (row.length - 1) * margin
-      const availableWidth = containerWidth - totalMargins
+      const total
       const totalAspectRatio = row.reduce((sum, photo) => sum + photo.width / photo.height, 0)
       const rowHeight = availableWidth / totalAspectRatio
 

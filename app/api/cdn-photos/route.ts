@@ -1,32 +1,48 @@
 import { NextResponse } from "next/server"
 
 const CDN_BASE = "https://cdn.bogdanpics.com"
-const DIR_API = `${CDN_BASE}/list-directories.php?path=/photos`
-const FILES_API = `${CDN_BASE}/list-files.php?path=/photos/`
+const PHOTOS_API = `${CDN_BASE}/list-files.php?path=/photos/`
+const ALBUMS_DIR_API = `${CDN_BASE}/list-directories.php?path=/albums`
+const ALBUMS_FILES_API = `${CDN_BASE}/list-files.php?path=/albums/`
 
 export async function GET() {
   try {
-    // Get all categories
-    const dirRes = await fetch(DIR_API);
-    const dirData = await dirRes.json();
-    const categories: string[] = dirData.directories || [];
+    // Pozele pentru gridul principal
+    const categoriesRes = await fetch(`${CDN_BASE}/list-directories.php?path=/photos`)
+    const categoriesData = await categoriesRes.json()
+    const categories: string[] = categoriesData.directories || []
 
-    // Get all images in each category
-    const allImages: { src: string; category: string }[] = [];
+    const gridPhotos: { src: string; category: string }[] = []
     for (const category of categories) {
-      const filesRes = await fetch(FILES_API + encodeURIComponent(category));
-      const filesData = await filesRes.json();
-      const files: string[] = filesData.files || [];
+      const filesRes = await fetch(PHOTOS_API + encodeURIComponent(category))
+      const filesData = await filesRes.json()
+      const files: string[] = filesData.files || []
       files.forEach((file) => {
-        allImages.push({
+        gridPhotos.push({
           src: `${CDN_BASE}/photos/${encodeURIComponent(category)}/${encodeURIComponent(file)}`,
           category,
-        });
-      });
+        })
+      })
     }
 
-    return NextResponse.json({ photos: allImages });
+    // Albumele (toate pozele din fiecare album)
+    const albumsRes = await fetch(ALBUMS_DIR_API)
+    const albumsData = await albumsRes.json()
+    const albumFolders: string[] = albumsData.directories || []
+
+    const albums: Record<string, { src: string; album: string }[]> = {}
+    for (const album of albumFolders) {
+      const filesRes = await fetch(ALBUMS_FILES_API + encodeURIComponent(album))
+      const filesData = await filesRes.json()
+      const files: string[] = filesData.files || []
+      albums[album] = files.map((file) => ({
+        src: `${CDN_BASE}/albums/${encodeURIComponent(album)}/${encodeURIComponent(file)}`,
+        album,
+      }))
+    }
+
+    return NextResponse.json({ gridPhotos, albums })
   } catch (error) {
-    return NextResponse.json({ error: "Failed to fetch CDN images" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to fetch CDN images" }, { status: 500 })
   }
 }
