@@ -280,7 +280,7 @@ export default function PhotoPortfolio() {
               </div>
               <div className="relative">
                 <img
-                  src="/placeholder.svg?height=400&width=400"
+                  src="https://cdn.bogdanpics.com/principal.jpg"
                   alt="Bogdan - Fotograf Botoșani"
                   className="rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 accent-glow-hover"
                 />
