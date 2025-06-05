@@ -797,7 +797,7 @@ export default function PhotoPortfolio() {
 
             {/* Main Image - Properly Constrained */}
             <img
-              src={filteredPhotos[lightboxIndex]?.src || "/placeholder.svg"}
+              src={`https://cdn.bogdanpics.com${filteredPhotos[lightboxIndex]?.src || "/placeholder.svg"}`}
               alt={filteredPhotos[lightboxIndex]?.alt || "Fotografie"}
               className="max-w-full max-h-full w-auto h-auto object-contain select-none"
               onClick={(e) => e.stopPropagation()}
