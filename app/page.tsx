@@ -797,7 +797,19 @@ export default function PhotoPortfolio() {
 
             {/* Main Image - Properly Constrained */}
             <img
-              src={filteredPhotos[lightboxIndex]?.src || "/placeholder.svg"}
+              src={filteredPhotos[lightboxIndex]?.src
+                ? getThumbnailUrl(filteredPhotos[lightboxIndex].src, isFullscreen ? 2000 : 1200)
+                : "/placeholder.svg"}
+              srcSet={
+                filteredPhotos[lightboxIndex]?.src
+                  ? `
+                    ${getThumbnailUrl(filteredPhotos[lightboxIndex].src, 800)} 800w,
+                    ${getThumbnailUrl(filteredPhotos[lightboxIndex].src, 1200)} 1200w,
+                    ${getThumbnailUrl(filteredPhotos[lightboxIndex].src, 2000)} 2000w
+                  `
+                  : undefined
+              }
+              sizes="(max-width: 600px) 100vw, 80vw"
               alt={filteredPhotos[lightboxIndex]?.alt || "Fotografie"}
               className="max-w-full max-h-full w-auto h-auto object-contain select-none"
               onClick={(e) => e.stopPropagation()}
@@ -805,6 +817,7 @@ export default function PhotoPortfolio() {
                 maxWidth: "calc(100vw - 2rem)",
                 maxHeight: "calc(100vh - 2rem)",
               }}
+              loading="lazy"
             />
 
             {/* Image Info */}
@@ -1026,7 +1039,13 @@ const LazyPhoto = ({ photo, onPhotoClick, observer, isVisible }) => {
           {isVisible ? (
             <>
               <img
-                src={photo.src || "/placeholder.svg"}
+                src={getThumbnailUrl(photo.src, Math.round(photo.width))}
+                srcSet={`
+                  ${getThumbnailUrl(photo.src, 320)} 320w,
+                  ${getThumbnailUrl(photo.src, 480)} 480w,
+                  ${getThumbnailUrl(photo.src, 800)} 800w
+                `}
+                sizes="(max-width: 600px) 100vw, 33vw"
                 alt={photo.alt}
                 className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-500"
                 loading="lazy"
@@ -1056,4 +1075,14 @@ function getImageSize(src: string): Promise<{ width: number; height: number }> {
     img.onerror = () => resolve({ width: 1200, height: 800 }); // fallback
     img.src = src;
   });
+}
+
+// În PhotoGallery și LazyPhoto, modifică pentru a folosi thumbnails și srcSet
+const getThumbnailUrl = (src: string, width = 400) => {
+  // Exemplu pentru CDN ce acceptă parametri de redimensionare
+  // Ajustează după cum suportă CDN-ul tău (ex: Cloudflare, Imgix, etc.)
+  if (src.includes("cdn.bogdanpics.com")) {
+    return `${src}?w=${width}&auto=compress,format`;
+  }
+  return src;
 }
