@@ -233,9 +233,8 @@ export default function PhotoPortfolio() {
             portrete și peisaje până la evenimente speciale - fiecare fotografie spune o poveste unică.
           </p>
           <div className="flex items-center justify-center space-x-4 sm:space-x-6 mt-4 text-xs sm:text-sm text-muted-foreground">
-            <span>~50 urmăritori</span>
             <span>•</span>
-            <span>~100 fotografii</span>
+            <span>~50 urmăritori</span>
             <span>•</span>
             <span className="hidden sm:inline">Disponibil pentru colaborări</span>
           </div>
